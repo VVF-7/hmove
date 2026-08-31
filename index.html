@@ -28,7 +28,7 @@
 
         :root {
             --bg: #f4f0dd;
-            --header-bg: rgba(244, 240, 221, 0.4); /* Сделали более прозрачной */
+            --header-bg: rgba(244, 240, 221, 0.4); 
             --card-bg: rgba(255, 255, 255, 0.6);
             --card-border: rgba(0, 0, 0, 0.05);
             --text: #2d2d2d;
@@ -44,7 +44,7 @@
         /* === Темная тема === */
         body.dark-theme {
             --bg: #121212;
-            --header-bg: rgba(18, 18, 18, 0.4); /* Сделали более прозрачной */
+            --header-bg: rgba(18, 18, 18, 0.4); 
             --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(255, 255, 255, 0.1);
             --text: #f4f0dd;
@@ -77,15 +77,15 @@
         .orb-1 { top: -10%; left: -5%; width: 500px; height: 500px; background: var(--accent-purple); }
         .orb-2 { bottom: 10%; right: -10%; width: 400px; height: 400px; background: var(--accent-green); }
 
-        /* === Контейнер === */
+        /* === Контейнер (увеличены отступы) === */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 60px; /* Увеличен отступ для текста слева и справа */
         }
         
         @media (max-width: 768px) {
-            .container { padding: 0 8vw; }
+            .container { padding: 0 25px; } /* Адаптивный отступ на мобильных */
         }
 
         /* === Навигация === */
@@ -97,7 +97,7 @@
             z-index: 1000;
             padding: 1.5rem 0;
             background: var(--header-bg);
-            backdrop-filter: blur(15px); /* Размытие остается, чтобы текст читался */
+            backdrop-filter: blur(15px); 
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--card-border);
             transition: background 0.4s ease;
@@ -695,10 +695,6 @@
                 <span class="timer-number" id="minutes">22</span>
                 <span class="timer-label">Минут</span>
             </div>
-            <div class="timer-unit">
-                <span class="timer-number" id="seconds">26</span>
-                <span class="timer-label">Секунд</span>
-            </div>
         </div>
     </section>
 
@@ -825,24 +821,23 @@
     </footer>
 
     <script>
-        // === Таймер ===
+        // === Таймер (без секунд) ===
         function updateTimer() {
             const targetDate = new Date('2026-10-27T00:00:00');
             const now = new Date();
             const diff = targetDate - now;
             
             if (diff <= 0) {
-                ['days', 'hours', 'minutes', 'seconds'].forEach(id => document.getElementById(id).textContent = '0');
+                ['days', 'hours', 'minutes'].forEach(id => document.getElementById(id).textContent = '0');
                 return;
             }
             
             document.getElementById('days').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
             document.getElementById('hours').textContent = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             document.getElementById('minutes').textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            document.getElementById('seconds').textContent = Math.floor((diff % (1000 * 60)) / 1000);
         }
         updateTimer();
-        setInterval(updateTimer, 1000);
+        setInterval(updateTimer, 1000); // Обновляем раз в секунду, чтобы минуты менялись вовремя
 
         // === Анимации ===
         const observer = new IntersectionObserver((entries) => {
