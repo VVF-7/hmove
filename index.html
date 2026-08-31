@@ -10,7 +10,7 @@
     
     <!-- Мета-теги для красивого превью в мессенджерах -->
     <meta property="og:title" content="ХМОВЕ 2026 — 3 дня об отношениях">
-    <meta property="og:description" content="«Двоим лучше, нежели одному» — Екклесиаст 4:9. 27-30 октября 2026, Краснодар.">
+    <meta property="og:description" content="Двоим лучше, нежели одному — Екклесиаст 4:9. 27-30 октября 2026, Краснодар.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
     <meta property="og:type" content="website">
 
@@ -215,9 +215,23 @@
             position: relative;
         }
 
+        /* === Выравнивание текста (единый отступ для всех элементов Hero) === */
+        .hero-badge, .hero h1, .hero-headline, .hero-subtitle, .hero-desc, .timer {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-badge, .hero h1, .hero-headline, .hero-subtitle, .hero-desc, .timer {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+
         .hero-badge {
             display: inline-block;
-            padding: 0.5rem 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 50px;
@@ -266,19 +280,11 @@
             margin-bottom: 3rem;
         }
 
-        /* === Текст с отступами слева и справа === */
         .hero-desc {
             font-size: 1.2rem;
             color: var(--text-muted);
             max-width: 700px;
             margin-bottom: 3rem;
-            padding: 0 40px; /* Добавлены отступы слева и справа */
-        }
-
-        @media (max-width: 768px) {
-            .hero-desc {
-                padding: 0 15px; /* Адаптивный отступ для телефонов */
-            }
         }
 
         /* === Таймер (ПОСТОЯННОЕ зеленое свечение) === */
@@ -711,7 +717,7 @@
         <div class="hero-badge">27 — 30 октября 2026 · Краснодар</div>
         <h1>ХМОВЕ <span>2026</span></h1>
         
-        <h2 class="hero-headline">«Двоим лучше, нежели одному»</h2>
+        <h2 class="hero-headline">Двоим лучше, нежели одному</h2>
         <p class="hero-subtitle">Екклесиаст 4:9</p>
         
         <p class="hero-desc">3 дня об отношениях, браке и семье. Время, когда мы вместе ищем Божий план для наших отношений — между мужем и женой, родителями и детьми, друзьями.</p>
@@ -826,7 +832,7 @@
             <svg class="player-icon" id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
         </button>
         <div class="track-info">
-            <span class="track-title">Музыка для настроя</span>
+            <span class="track-title">Что такое ХМОВЕ?</span>
             <div class="progress-container">
                 <span class="time" id="currentTime">0:00</span>
                 <div class="progress-bar" id="progressBar">
