@@ -28,6 +28,7 @@
 
         :root {
             --bg: #f4f0dd;
+            --header-bg: rgba(244, 240, 221, 0.4); /* Сделали более прозрачной */
             --card-bg: rgba(255, 255, 255, 0.6);
             --card-border: rgba(0, 0, 0, 0.05);
             --text: #2d2d2d;
@@ -36,7 +37,21 @@
             --accent-green: #a6c261;
             --shadow: 0 10px 30px rgba(45, 45, 45, 0.05);
             --shadow-hover: 0 15px 40px rgba(168, 138, 237, 0.15);
+            --player-bg: rgba(255, 255, 255, 0.85);
             --transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        /* === Темная тема === */
+        body.dark-theme {
+            --bg: #121212;
+            --header-bg: rgba(18, 18, 18, 0.4); /* Сделали более прозрачной */
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text: #f4f0dd;
+            --text-muted: rgba(244, 240, 221, 0.6);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 15px 40px rgba(168, 138, 237, 0.15);
+            --player-bg: rgba(18, 18, 18, 0.85);
         }
 
         body {
@@ -48,6 +63,7 @@
             word-wrap: break-word;
             -webkit-font-smoothing: antialiased;
             padding-bottom: 100px;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
         /* === Фоновые свечения === */
@@ -69,9 +85,7 @@
         }
         
         @media (max-width: 768px) {
-            .container {
-                padding: 0 8vw;
-            }
+            .container { padding: 0 8vw; }
         }
 
         /* === Навигация === */
@@ -82,10 +96,11 @@
             width: 100%;
             z-index: 1000;
             padding: 1.5rem 0;
-            background: rgba(244, 240, 221, 0.8);
-            backdrop-filter: blur(15px);
+            background: var(--header-bg);
+            backdrop-filter: blur(15px); /* Размытие остается, чтобы текст читался */
             -webkit-backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--card-border);
+            transition: background 0.4s ease;
         }
 
         nav {
@@ -120,6 +135,12 @@
             100% { transform: scale(1); opacity: 1; background: var(--accent-purple); }
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -135,6 +156,26 @@
         }
 
         .nav-links a:hover { color: var(--accent-purple); }
+
+        /* === Кнопка темы === */
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        .theme-toggle:hover {
+            border-color: var(--accent-purple);
+            transform: rotate(20deg);
+        }
 
         /* === Hero === */
         .hero {
@@ -295,6 +336,50 @@
             font-weight: 600;
         }
 
+        /* === Бегущая строка === */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 2rem 0;
+            white-space: nowrap;
+        }
+
+        .marquee-track {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-container.reverse .marquee-track {
+            animation-direction: reverse;
+        }
+
+        .marquee-content {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding-right: 3rem;
+        }
+
+        .text-outline {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--accent-purple);
+            transition: color 0.3s ease;
+        }
+        
+        .text-solid {
+            color: var(--accent-green);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* === Видео блок === */
         .video-container {
             position: relative;
@@ -373,7 +458,7 @@
 
         .social-btn:hover {
             border-color: var(--accent-purple);
-            background: #fff;
+            background: var(--card-bg);
             transform: translateY(-3px);
         }
 
@@ -386,16 +471,17 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--player-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid var(--card-border);
             z-index: 1001;
             padding: 12px 20px;
             display: flex;
             align-items: center;
             gap: 15px;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+            transition: background 0.4s ease;
         }
 
         .play-btn {
@@ -440,7 +526,7 @@
         .progress-bar {
             flex-grow: 1;
             height: 6px;
-            background: rgba(0,0,0,0.1);
+            background: var(--card-border);
             border-radius: 3px;
             cursor: pointer;
             position: relative;
@@ -473,7 +559,7 @@
             height: 5px;
             -webkit-appearance: none;
             appearance: none;
-            background: rgba(0,0,0,0.1);
+            background: var(--card-border);
             border-radius: 3px;
             outline: none;
             cursor: pointer;
@@ -577,8 +663,11 @@
                     <li><a href="#video">Видео</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
-                <div class="burger" id="burger">
-                    <span></span><span></span><span></span>
+                <div class="nav-right">
+                    <button id="theme-toggle" class="theme-toggle">🌙</button>
+                    <div class="burger" id="burger">
+                        <span></span><span></span><span></span>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -631,16 +720,59 @@
         </div>
     </section>
 
+    <!-- Бегущая строка перед видео -->
+    <div class="marquee-container">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span class="text-outline">ХМОВЕ</span>
+                <span class="text-solid">2026</span>
+                <span class="text-outline">ХМОВЕ</span>
+                <span class="text-solid">2026</span>
+            </div>
+            <div class="marquee-content">
+                <span class="text-outline">ХМОВЕ</span>
+                <span class="text-solid">2026</span>
+                <span class="text-outline">ХМОВЕ</span>
+                <span class="text-solid">2026</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Блок с видео -->
     <section id="video" class="container">
         <div class="video-container fade-in">
             <video class="custom-video" controls preload="none" poster="video-preview.jpg">
-                <!-- Убедитесь, что файл называется именно video.mp4 и лежит рядом с index.html -->
                 <source src="video.mp4" type="video/mp4">
                 Ваш браузер не поддерживает воспроизведение видео.
             </video>
         </div>
     </section>
+
+    <!-- Бегущая строка после видео (реверс) -->
+    <div class="marquee-container reverse">
+        <div class="marquee-track">
+            <div class="marquee-content">
+                <span class="text-solid">ТОЛЬКО</span>
+                <span class="text-outline">С</span>
+                <span class="text-solid">ИИСУСОМ</span>
+                <span class="text-outline">•</span>
+                <span class="text-solid">ТОЛЬКО</span>
+                <span class="text-outline">С</span>
+                <span class="text-solid">ИИСУСОМ</span>
+                <span class="text-outline">•</span>
+            </div>
+            <div class="marquee-content">
+                <span class="text-solid">ТОЛЬКО</span>
+                <span class="text-outline">С</span>
+                <span class="text-solid">ИИСУСОМ</span>
+                <span class="text-outline">•</span>
+                <span class="text-solid">ТОЛЬКО</span>
+                <span class="text-outline">С</span>
+                <span class="text-solid">ИИСУСОМ</span>
+                <span class="text-outline">•</span>
+            </div>
+        </div>
+    </div>
 
     <section id="contacts" class="container">
         <div class="contacts-box fade-in">
@@ -731,6 +863,27 @@
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
             });
+        });
+
+        // === Переключатель темы ===
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Проверка сохраненной темы
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-theme');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            if (body.classList.contains('dark-theme')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
+            }
         });
 
         // === Логика Аудиоплеера ===
