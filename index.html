@@ -28,7 +28,7 @@
 
         :root {
             --bg: #f4f0dd;
-            --header-bg: rgba(244, 240, 221, 0.4); 
+            --header-bg: rgba(244, 240, 221, 0.1); /* Максимально прозрачная шапка */
             --card-bg: rgba(255, 255, 255, 0.6);
             --card-border: rgba(0, 0, 0, 0.05);
             --text: #2d2d2d;
@@ -44,7 +44,7 @@
         /* === Темная тема === */
         body.dark-theme {
             --bg: #121212;
-            --header-bg: rgba(18, 18, 18, 0.4); 
+            --header-bg: rgba(18, 18, 18, 0.1); /* Максимально прозрачная шапка */
             --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(255, 255, 255, 0.1);
             --text: #f4f0dd;
@@ -77,15 +77,15 @@
         .orb-1 { top: -10%; left: -5%; width: 500px; height: 500px; background: var(--accent-purple); }
         .orb-2 { bottom: 10%; right: -10%; width: 400px; height: 400px; background: var(--accent-green); }
 
-        /* === Контейнер (увеличены отступы) === */
+        /* === Контейнер === */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 60px; /* Увеличен отступ для текста слева и справа */
+            padding: 0 60px; 
         }
         
         @media (max-width: 768px) {
-            .container { padding: 0 25px; } /* Адаптивный отступ на мобильных */
+            .container { padding: 0 25px; } 
         }
 
         /* === Навигация === */
@@ -117,22 +117,46 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
-        .logo-dot {
-            width: 12px;
-            height: 12px;
+        /* === Светящийся крестик === */
+        .logo-cross {
+            width: 16px;
+            height: 16px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo-cross::before, .logo-cross::after {
+            content: '';
+            position: absolute;
             background: var(--accent-purple);
-            border-radius: 50%;
             box-shadow: 0 0 10px var(--accent-purple);
-            animation: pulse 2s infinite;
+            border-radius: 2px;
+            animation: pulse-cross 2s infinite;
+        }
+        
+        .logo-cross::before {
+            width: 100%;
+            height: 3px;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        
+        .logo-cross::after {
+            width: 3px;
+            height: 100%;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; background: var(--accent-purple); }
-            50% { transform: scale(1.3); opacity: 0.8; background: var(--accent-green); }
-            100% { transform: scale(1); opacity: 1; background: var(--accent-purple); }
+        @keyframes pulse-cross {
+            0% { background: var(--accent-purple); box-shadow: 0 0 8px var(--accent-purple); }
+            50% { background: var(--accent-green); box-shadow: 0 0 12px var(--accent-green); }
+            100% { background: var(--accent-purple); box-shadow: 0 0 8px var(--accent-purple); }
         }
 
         .nav-right {
@@ -245,7 +269,7 @@
             margin-bottom: 3rem;
         }
 
-        /* === Таймер === */
+        /* === Таймер (ПОСТОЯННОЕ зеленое свечение) === */
         .timer {
             display: flex;
             gap: 1rem;
@@ -255,20 +279,19 @@
 
         .timer-unit {
             background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            border: 1px solid var(--accent-green); /* Постоянный зеленый цвет рамки */
             backdrop-filter: blur(10px);
             padding: 1.5rem 2rem;
             border-radius: 15px;
             text-align: center;
             min-width: 100px;
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            box-shadow: 0 0 20px rgba(166, 194, 97, 0.15); /* Постоянное зеленое свечение */
         }
 
         .timer-unit:hover {
-            border-color: var(--accent-green);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(166, 194, 97, 0.2);
+            box-shadow: 0 0 35px rgba(166, 194, 97, 0.3); /* Усиление свечения при наведении */
         }
 
         .timer-number {
@@ -297,7 +320,7 @@
             color: var(--text);
         }
 
-        /* === Bento Grid === */
+        /* === Bento Grid (ПОСТОЯННОЕ фиолетовое свечение) === */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
@@ -306,18 +329,17 @@
 
         .bento-card {
             background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            border: 1px solid var(--accent-purple); /* Постоянный фиолетовый цвет рамки */
             padding: 2rem;
             border-radius: 20px;
             backdrop-filter: blur(10px);
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            box-shadow: 0 0 25px rgba(168, 138, 237, 0.1); /* Постоянное фиолетовое свечение */
         }
 
         .bento-card:hover {
-            border-color: var(--accent-purple);
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(168, 138, 237, 0.25); /* Усиление свечения при наведении */
         }
 
         .bento-large { grid-column: span 12; }
@@ -655,7 +677,7 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <div class="logo-dot"></div>
+                    <div class="logo-cross"></div> <!-- Светящийся крестик -->
                     ХМОВЕ
                 </a>
                 <ul class="nav-links" id="navMenu">
