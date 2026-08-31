@@ -17,13 +17,13 @@
         }
 
         :root {
-            --bg: #f4f0dd; /* Основной кремовый фон */
-            --card-bg: rgba(255, 255, 255, 0.6); /* Легкое стекло */
+            --bg: #f4f0dd;
+            --card-bg: rgba(255, 255, 255, 0.6);
             --card-border: rgba(0, 0, 0, 0.05);
-            --text: #2d2d2d; /* Темно-серый для идеальной читабельности */
+            --text: #2d2d2d;
             --text-muted: rgba(45, 45, 45, 0.6);
-            --accent-purple: #a88aed; /* Фиолетовый акцент */
-            --accent-green: #a6c261; /* Зеленый акцент */
+            --accent-purple: #a88aed;
+            --accent-green: #a6c261;
             --shadow: 0 10px 30px rgba(45, 45, 45, 0.05);
             --shadow-hover: 0 15px 40px rgba(168, 138, 237, 0.15);
             --transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -37,9 +37,10 @@
             overflow-x: hidden;
             word-wrap: break-word;
             -webkit-font-smoothing: antialiased;
+            padding-bottom: 100px;
         }
 
-        /* === Фоновые свечение === */
+        /* === Фоновые свечения === */
         .glow-orb {
             position: fixed;
             border-radius: 50%;
@@ -54,7 +55,13 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 25px;
+            }
         }
 
         /* === Навигация === */
@@ -117,9 +124,7 @@
             transition: var(--transition);
         }
 
-        .nav-links a:hover {
-            color: var(--accent-purple);
-        }
+        .nav-links a:hover { color: var(--accent-purple); }
 
         /* === Hero === */
         .hero {
@@ -149,7 +154,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(2.5rem, 10vw, 6rem);
             line-height: 1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             font-weight: 700;
             color: var(--text);
         }
@@ -157,6 +162,29 @@
         .hero h1 span {
             color: var(--accent-purple);
             text-shadow: 0 0 30px rgba(168, 138, 237, 0.3);
+        }
+
+        /* === Анимированная цитата === */
+        .hero-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+            animation: colorShift 4s ease-in-out infinite;
+        }
+
+        @keyframes colorShift {
+            0% { color: #a88aed; }
+            50% { color: #a6c261; }
+            100% { color: #a88aed; }
+        }
+
+        .hero-subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
         }
 
         .hero-desc {
@@ -208,10 +236,8 @@
             font-weight: 600;
         }
 
-        /* === Общие стили секций === */
-        section {
-            padding: 6rem 0;
-        }
+        /* === Секции === */
+        section { padding: 6rem 0; }
 
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
@@ -291,10 +317,7 @@
             font-weight: 700;
         }
 
-        .phone-link:hover {
-            color: var(--accent-purple);
-            text-shadow: 0 0 20px rgba(168, 138, 237, 0.3);
-        }
+        .phone-link:hover { color: var(--accent-purple); }
 
         .social-links {
             display: flex;
@@ -323,68 +346,132 @@
             border-color: var(--accent-purple);
             background: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(168, 138, 237, 0.15);
         }
 
-        .social-btn svg {
-            width: 24px;
-            height: 24px;
-        }
-
+        .social-btn svg { width: 24px; height: 24px; }
         .tg-icon { color: #0088cc; }
         .max-icon { color: #ff3b30; }
 
-        /* === Музыкальный плеер === */
-        .music-player {
+        /* === Аудиоплеер === */
+        .audio-player {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            z-index: 1001;
+            padding: 12px 20px;
             display: flex;
             align-items: center;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: 10px 20px 10px 10px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(45, 45, 45, 0.1);
-            z-index: 1000;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .music-player:hover {
-            background: rgba(255, 255, 255, 0.95);
-            transform: scale(1.05);
+            gap: 15px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
         }
 
         .play-btn {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
+            min-width: 45px;
             border-radius: 50%;
             background: var(--accent-purple);
+            border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            margin-right: 12px;
+            cursor: pointer;
             transition: var(--transition);
         }
 
-        .play-btn:hover {
-            background: var(--accent-green);
+        .play-btn:hover { background: var(--accent-green); }
+
+        .track-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
-        .play-icon, .pause-icon {
-            width: 18px;
-            height: 18px;
-        }
-
-        .music-text {
+        .track-title {
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--text);
             white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 6px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-purple);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: 'Space Grotesk', sans-serif;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(0,0,0,0.1);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            cursor: pointer;
+        }
+        .volume-slider::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            cursor: pointer;
+            border: none;
+        }
+
+        .player-icon {
+            width: 20px;
+            height: 20px;
         }
 
         /* === Footer === */
@@ -396,19 +483,18 @@
             font-size: 0.9rem;
         }
 
-        /* === Анимации появления === */
+        /* === Анимации === */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
-
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* === Мобильное меню === */
+        /* === Адаптивность === */
         .burger {
             display: none;
             flex-direction: column;
@@ -438,24 +524,11 @@
                 transition: right 0.4s ease;
                 z-index: 999;
             }
-            .nav-links.active {
-                right: 0;
-            }
-            .burger {
-                display: flex;
-                z-index: 1001;
-            }
-            .music-player {
-                bottom: 15px;
-                right: 15px;
-                padding: 8px 15px 8px 8px;
-            }
-            .music-text {
-                display: none; /* Скрываем текст на очень узких экранах, оставляем только кнопку */
-            }
-            .play-btn {
-                margin-right: 0;
-            }
+            .nav-links.active { right: 0; }
+            .burger { display: flex; z-index: 1001; }
+            
+            .volume-control { display: none; } 
+            .track-title { max-width: 150px; }
         }
     </style>
 </head>
@@ -485,7 +558,11 @@
     <section class="hero container">
         <div class="hero-badge">27 — 30 октября 2026 · Краснодар</div>
         <h1>ХМОВЕ <span>2026</span></h1>
-        <p class="hero-desc">3 дня об отношениях, браке и семье. «Двоим лучше, нежели одному» — это не просто слова, это приглашение к жизни в любви.</p>
+        
+        <h2 class="hero-headline">«Двоим лучше, нежели одному»</h2>
+        <p class="hero-subtitle">Екклесиаст 4:9</p>
+        
+        <p class="hero-desc">3 дня об отношениях, браке и семье. Время, когда мы вместе ищем Божий план для наших отношений — между мужем и женой, родителями и детьми, друзьями.</p>
         
         <div class="timer" id="timer">
             <div class="timer-unit">
@@ -511,12 +588,12 @@
         <h2 class="section-title fade-in">О чем будем говорить</h2>
         <div class="bento-grid">
             <div class="bento-card bento-large fade-in">
-                <div class="verse">«Двоим лучше, нежели одному»</div>
-                <p style="font-size: 1.1rem; color: var(--text);">Екклесиаст 4:9. Бог создал нас для общения — с Ним и друг с другом. Время, когда мы вместе ищем Божий план для наших отношений — между мужем и женой, родителями и детьми, друзьями.</p>
+                <div class="verse">Екклесиаст 4:9</div>
+                <p style="font-size: 1.1rem; color: var(--text);">Бог создал нас для общения — с Ним и друг с другом. Приходи один, приходи с семьёй, приходи с другом. Здесь каждый найдёт своё место. Мы соберёмся, чтобы слышать слово, молиться, общаться и расти вместе. Потому что отношения — это то, ради чего мы созданы.</p>
             </div>
             <div class="bento-card bento-med fade-in">
-                <h3 style="margin-bottom: 0.5rem; color: var(--accent-green);">Для кого?</h3>
-                <p>Приходи один, приходи с семьёй, приходи с другом. Здесь каждый найдёт своё место.</p>
+                <h3 style="margin-bottom: 0.5rem; color: var(--accent-green);">Место</h3>
+                <p>г. Краснодар, пос. Победитель, община «Рука помощи»</p>
             </div>
             <div class="bento-card bento-med fade-in">
                 <h3 style="margin-bottom: 0.5rem; color: var(--accent-purple);">Формат</h3>
@@ -528,16 +605,19 @@
     <section id="contacts" class="container">
         <div class="contacts-box fade-in">
             <h3>По вопросам регистрации обращайтесь по телефону:</h3>
-            <a href="tel:+79881875593" class="phone-link">+7 (988) 187-55-93</a>
+            <!-- Исправленный номер телефона -->
+            <a href="tel:+79186144314" class="phone-link">+7 (918) 614-43-14</a>
             
             <div class="social-links">
-                <a href="https://t.me/+79881875593" target="_blank" class="social-btn">
+                <!-- Исправленная ссылка Telegram -->
+                <a href="https://t.me/+79186144314" target="_blank" class="social-btn">
                     <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005-.002l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.643.136-.953l11.566-4.458c.538-.196 1.006.128.832.941z"/>
                     </svg>
                     Telegram
                 </a>
-                <a href="tel:+79881875593" target="_blank" class="social-btn">
+                <!-- Исправленная ссылка для Max -->
+                <a href="tel:+79186144314" target="_blank" class="social-btn">
                     <svg class="max-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.072-1.113l-.291-.174-3.012.892.892-3.012-.174-.291A8 8 0 1112 20zm4.427-5.427c-.243-.121-1.437-.711-1.66-.791-.223-.08-.385-.121-.547.121-.162.243-.629.791-.771.953-.142.162-.284.182-.527.06-.243-.121-1.026-.377-1.953-1.205-.722-.643-1.21-1.438-1.352-1.681-.142-.243-.015-.374.106-.495.109-.109.243-.284.364-.426.121-.142.162-.243.243-.405.08-.162.04-.303-.02-.426-.08-.121-.711-1.715-.974-2.348-.257-.617-.518-.533-.711-.544l-.606-.01c-.162 0-.426.06-.65.303-.223.243-.852.832-.852 2.03 0 1.198.872 2.356.993 2.518.121.162 1.717 2.625 4.156 3.682.581.251 1.034.401 1.388.513.583.185 1.113.159 1.532.096.467-.069 1.437-.587 1.639-1.154.202-.567.202-1.054.141-1.154-.06-.1-.22-.16-.463-.28z"/>
                     </svg>
@@ -547,23 +627,31 @@
         </div>
     </section>
 
-    <!-- Музыкальный плеер -->
-    <div class="music-player" id="musicPlayer" onclick="toggleMusic()">
-        <div class="play-btn">
-            <svg class="play-icon" id="playIcon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-            </svg>
-            <svg class="pause-icon" id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
-                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-            </svg>
+    <div class="audio-player">
+        <button class="play-btn" id="playPauseBtn">
+            <svg class="player-icon" id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="player-icon" id="pauseIcon" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <div class="track-info">
+            <span class="track-title">Музыка для настроя</span>
+            <div class="progress-container">
+                <span class="time" id="currentTime">0:00</span>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="time" id="duration">0:00</span>
+            </div>
         </div>
-        <span class="music-text">Музыка для настроя</span>
+        <div class="volume-control">
+            <svg class="player-icon" viewBox="0 0 24 24" fill="currentColor" style="color: var(--text-muted);">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+            </svg>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="100">
+        </div>
     </div>
-    
-    <!-- Аудио файл. Замените src на вашу песню -->
+
     <audio id="bgMusic" loop>
         <source src="music.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудио элемент.
     </audio>
 
     <footer>
@@ -581,9 +669,7 @@
             const diff = targetDate - now;
             
             if (diff <= 0) {
-                ['days', 'hours', 'minutes', 'seconds'].forEach(id => {
-                    document.getElementById(id).textContent = '0';
-                });
+                ['days', 'hours', 'minutes', 'seconds'].forEach(id => document.getElementById(id).textContent = '0');
                 return;
             }
             
@@ -597,58 +683,79 @@
 
         // === Анимации ===
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
         // === Мобильное меню ===
         const burger = document.getElementById('burger');
         const navMenu = document.getElementById('navMenu');
-        
-        burger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
+        burger.addEventListener('click', () => navMenu.classList.toggle('active'));
+        navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
 
         // === Плавная прокрутка ===
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
+                if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
             });
         });
 
-        // === Управление музыкой ===
+        // === Логика Аудиоплеера ===
         const music = document.getElementById('bgMusic');
+        const playPauseBtn = document.getElementById('playPauseBtn');
         const playIcon = document.getElementById('playIcon');
         const pauseIcon = document.getElementById('pauseIcon');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const currentTimeElem = document.getElementById('currentTime');
+        const durationElem = document.getElementById('duration');
+        const volumeSlider = document.getElementById('volumeSlider');
 
-        function toggleMusic() {
+        playPauseBtn.addEventListener('click', () => {
             if (music.paused) {
-                music.play();
-                playIcon.style.display = 'none';
-                pauseIcon.style.display = 'block';
+                music.play().catch(e => console.error("Ошибка воспроизведения:", e));
             } else {
                 music.pause();
-                playIcon.style.display = 'block';
-                pauseIcon.style.display = 'none';
             }
+        });
+
+        music.addEventListener('play', () => {
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+        });
+        music.addEventListener('pause', () => {
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+        });
+
+        music.addEventListener('loadedmetadata', () => {
+            durationElem.textContent = formatTime(music.duration);
+        });
+
+        music.addEventListener('timeupdate', () => {
+            const percentage = (music.currentTime / music.duration) * 100;
+            progressFill.style.width = percentage + '%';
+            currentTimeElem.textContent = formatTime(music.currentTime);
+        });
+
+        progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const percentage = clickX / rect.width;
+            music.currentTime = percentage * music.duration;
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            music.volume = e.target.value / 100;
+        });
+
+        function formatTime(sec) {
+            if (isNaN(sec) || sec === Infinity) return '0:00';
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
         }
     </script>
 </body>
