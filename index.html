@@ -27,9 +27,9 @@
         }
 
         :root {
-            --bg-top: #f4f0dd; /* Начальный кремовый цвет */
-            --bg-bottom: #d1c0ef; /* Финальный фиолетовый цвет */
-            --header-bg: rgba(244, 240, 221, 0.1); /* Прозрачная шапка */
+            --bg-top: #f4f0dd; 
+            --bg-bottom: #d1c0ef; 
+            --header-bg: rgba(244, 240, 221, 0.1); 
             --card-bg: rgba(255, 255, 255, 0.6);
             --card-border: rgba(0, 0, 0, 0.05);
             --text: #2d2d2d;
@@ -40,14 +40,14 @@
             --shadow-hover: 0 15px 40px rgba(168, 138, 237, 0.15);
             --player-bg: rgba(255, 255, 255, 0.85);
             --transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-            --bg: #f4f0dd; /* Базовый цвет для элементов */
+            --bg: #f4f0dd; 
         }
 
         /* === Темная тема === */
         body.dark-theme {
-            --bg-top: #121212; /* Начальный темный цвет */
-            --bg-bottom: #241730; /* Финальный темно-фиолетовый */
-            --header-bg: rgba(18, 18, 18, 0.1); /* Прозрачная шапка */
+            --bg-top: #121212; 
+            --bg-bottom: #241730; 
+            --header-bg: rgba(18, 18, 18, 0.1); 
             --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(255, 255, 255, 0.1);
             --text: #f4f0dd;
@@ -60,9 +60,8 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            /* Градиентный фон, который будет переливаться при скролле */
             background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-top) 40%, var(--bg-bottom) 100%);
-            background-attachment: fixed; /* Фиксируем фон для эффекта переливания */
+            background-attachment: fixed; 
             color: var(--text);
             line-height: 1.5;
             overflow-x: hidden;
@@ -143,7 +142,7 @@
             animation: pulse-cross 2s infinite;
         }
         
-        .logo-cross::after { /* Вертикальная планка */
+        .logo-cross::after { 
             width: 4px;
             height: 100%;
             top: 0;
@@ -151,10 +150,10 @@
             transform: translateX(-50%);
         }
         
-        .logo-cross::before { /* Горизонтальная перекладина */
+        .logo-cross::before { 
             width: 100%;
             height: 4px;
-            top: 5px; /* Смещаем вверх для классической формы */
+            top: 5px; 
             left: 0;
         }
 
@@ -267,11 +266,19 @@
             margin-bottom: 3rem;
         }
 
+        /* === Текст с отступами слева и справа === */
         .hero-desc {
             font-size: 1.2rem;
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 700px;
             margin-bottom: 3rem;
+            padding: 0 40px; /* Добавлены отступы слева и справа */
+        }
+
+        @media (max-width: 768px) {
+            .hero-desc {
+                padding: 0 15px; /* Адаптивный отступ для телефонов */
+            }
         }
 
         /* === Таймер (ПОСТОЯННОЕ зеленое свечение) === */
@@ -682,7 +689,7 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">
-                    <div class="logo-cross"></div> <!-- Светящийся крестик -->
+                    <div class="logo-cross"></div> 
                     ХМОВЕ
                 </a>
                 <ul class="nav-links" id="navMenu">
