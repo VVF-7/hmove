@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>ХМОВЕ 2026 — 3 дня об отношениях</title>
+    
+    <!-- Иконка для вкладки браузера -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%23a88aed'/%3E%3Ctext x='50' y='72' font-family='Arial, sans-serif' font-size='60' font-weight='bold' fill='%23f4f0dd' text-anchor='middle'%3EХ%3C/text%3E%3C/svg%3E">
+    
+    <!-- Мета-теги для красивого превью в мессенджерах -->
+    <meta property="og:title" content="ХМОВЕ 2026 — 3 дня об отношениях">
+    <meta property="og:description" content="«Двоим лучше, нежели одному» — Екклесиаст 4:9. 27-30 октября 2026, Краснодар.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <meta property="og:type" content="website">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -60,7 +70,7 @@
         
         @media (max-width: 768px) {
             .container {
-                padding: 0 25px;
+                padding: 0 8vw;
             }
         }
 
@@ -285,6 +295,25 @@
             font-weight: 600;
         }
 
+        /* === Видео блок === */
+        .video-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            border: 1px solid var(--card-border);
+            background: #000;
+        }
+
+        .custom-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 16 / 9;
+        }
+
         /* === Контакты === */
         .contacts-box {
             background: linear-gradient(145deg, rgba(168, 138, 237, 0.1), rgba(166, 194, 97, 0.1));
@@ -350,7 +379,7 @@
 
         .social-btn svg { width: 24px; height: 24px; }
         .tg-icon { color: #0088cc; }
-        .max-icon { color: #ff3b30; }
+        .wa-icon { color: #25D366; }
 
         /* === Аудиоплеер === */
         .audio-player {
@@ -546,6 +575,7 @@
                 </a>
                 <ul class="nav-links" id="navMenu">
                     <li><a href="#about">О мероприятии</a></li>
+                    <li><a href="#video">Видео</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
                 <div class="burger" id="burger">
@@ -562,7 +592,7 @@
         <h2 class="hero-headline">«Двоим лучше, нежели одному»</h2>
         <p class="hero-subtitle">Екклесиаст 4:9</p>
         
-        <p class="hero-desc">3 дня об отношениях, браке и семье. Время, когда мы вместе ищем Божий план для наших отношений — между мужем и женой, родителями и детьми, друзьями.</p>
+        <p class="hero-desc">3 дня об отношениях, браке и семье. Время, когда мы вместе ищем Божий план для наших отношений — между мужом и женой, родителями и детьми, друзьями.</p>
         
         <div class="timer" id="timer">
             <div class="timer-unit">
@@ -602,26 +632,35 @@
         </div>
     </section>
 
+    <!-- Блок с видео -->
+    <section id="video" class="container">
+        <h2 class="section-title fade-in">Атмосфера ХМОВЕ</h2>
+        <div class="video-container fade-in">
+            <video class="custom-video" controls preload="none" poster="video-preview.jpg">
+                <!-- Убедитесь, что файл называется именно video.mp4 и лежит рядом с index.html -->
+                <source src="video.mp4" type="video/mp4">
+                Ваш браузер не поддерживает воспроизведение видео.
+            </video>
+        </div>
+    </section>
+
     <section id="contacts" class="container">
         <div class="contacts-box fade-in">
             <h3>По вопросам регистрации обращайтесь по телефону:</h3>
-            <!-- Исправленный номер телефона -->
             <a href="tel:+79186144314" class="phone-link">+7 (918) 614-43-14</a>
             
             <div class="social-links">
-                <!-- Исправленная ссылка Telegram -->
                 <a href="https://t.me/+79186144314" target="_blank" class="social-btn">
                     <svg class="tg-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005-.002l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.643.136-.953l11.566-4.458c.538-.196 1.006.128.832.941z"/>
                     </svg>
                     Telegram
                 </a>
-                <!-- Исправленная ссылка для Max -->
-                <a href="tel:+79186144314" target="_blank" class="social-btn">
-                    <svg class="max-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a8 8 0 01-4.072-1.113l-.291-.174-3.012.892.892-3.012-.174-.291A8 8 0 1112 20zm4.427-5.427c-.243-.121-1.437-.711-1.66-.791-.223-.08-.385-.121-.547.121-.162.243-.629.791-.771.953-.142.162-.284.182-.527.06-.243-.121-1.026-.377-1.953-1.205-.722-.643-1.21-1.438-1.352-1.681-.142-.243-.015-.374.106-.495.109-.109.243-.284.364-.426.121-.142.162-.243.243-.405.08-.162.04-.303-.02-.426-.08-.121-.711-1.715-.974-2.348-.257-.617-.518-.533-.711-.544l-.606-.01c-.162 0-.426.06-.65.303-.223.243-.852.832-.852 2.03 0 1.198.872 2.356.993 2.518.121.162 1.717 2.625 4.156 3.682.581.251 1.034.401 1.388.513.583.185 1.113.159 1.532.096.467-.069 1.437-.587 1.639-1.154.202-.567.202-1.054.141-1.154-.06-.1-.22-.16-.463-.28z"/>
+                <a href="https://wa.me/79186144314" target="_blank" class="social-btn">
+                    <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
                     </svg>
-                    Max
+                    WhatsApp
                 </a>
             </div>
         </div>
