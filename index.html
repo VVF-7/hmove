@@ -27,8 +27,9 @@
         }
 
         :root {
-            --bg: #f4f0dd;
-            --header-bg: rgba(244, 240, 221, 0.1); /* Максимально прозрачная шапка */
+            --bg-top: #f4f0dd; /* Начальный кремовый цвет */
+            --bg-bottom: #d1c0ef; /* Финальный фиолетовый цвет */
+            --header-bg: rgba(244, 240, 221, 0.1); /* Прозрачная шапка */
             --card-bg: rgba(255, 255, 255, 0.6);
             --card-border: rgba(0, 0, 0, 0.05);
             --text: #2d2d2d;
@@ -39,12 +40,14 @@
             --shadow-hover: 0 15px 40px rgba(168, 138, 237, 0.15);
             --player-bg: rgba(255, 255, 255, 0.85);
             --transition: 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --bg: #f4f0dd; /* Базовый цвет для элементов */
         }
 
         /* === Темная тема === */
         body.dark-theme {
-            --bg: #121212;
-            --header-bg: rgba(18, 18, 18, 0.1); /* Максимально прозрачная шапка */
+            --bg-top: #121212; /* Начальный темный цвет */
+            --bg-bottom: #241730; /* Финальный темно-фиолетовый */
+            --header-bg: rgba(18, 18, 18, 0.1); /* Прозрачная шапка */
             --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(255, 255, 255, 0.1);
             --text: #f4f0dd;
@@ -52,18 +55,21 @@
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             --shadow-hover: 0 15px 40px rgba(168, 138, 237, 0.15);
             --player-bg: rgba(18, 18, 18, 0.85);
+            --bg: #121212;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg);
+            /* Градиентный фон, который будет переливаться при скролле */
+            background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-top) 40%, var(--bg-bottom) 100%);
+            background-attachment: fixed; /* Фиксируем фон для эффекта переливания */
             color: var(--text);
             line-height: 1.5;
             overflow-x: hidden;
             word-wrap: break-word;
             -webkit-font-smoothing: antialiased;
             padding-bottom: 100px;
-            transition: background 0.4s ease, color 0.4s ease;
+            transition: color 0.4s ease;
         }
 
         /* === Фоновые свечения === */
@@ -117,13 +123,13 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        /* === Светящийся крестик === */
+        /* === Светящийся классический крестик === */
         .logo-cross {
             width: 16px;
-            height: 16px;
+            height: 22px;
             position: relative;
             display: inline-block;
         }
@@ -137,20 +143,19 @@
             animation: pulse-cross 2s infinite;
         }
         
-        .logo-cross::before {
-            width: 100%;
-            height: 3px;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
+        .logo-cross::after { /* Вертикальная планка */
+            width: 4px;
+            height: 100%;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
-        .logo-cross::after {
-            width: 3px;
-            height: 100%;
-            left: 50%;
-            top: 0;
-            transform: translateX(-50%);
+        .logo-cross::before { /* Горизонтальная перекладина */
+            width: 100%;
+            height: 4px;
+            top: 5px; /* Смещаем вверх для классической формы */
+            left: 0;
         }
 
         @keyframes pulse-cross {
@@ -279,19 +284,19 @@
 
         .timer-unit {
             background: var(--card-bg);
-            border: 1px solid var(--accent-green); /* Постоянный зеленый цвет рамки */
+            border: 1px solid var(--accent-green);
             backdrop-filter: blur(10px);
             padding: 1.5rem 2rem;
             border-radius: 15px;
             text-align: center;
             min-width: 100px;
             transition: var(--transition);
-            box-shadow: 0 0 20px rgba(166, 194, 97, 0.15); /* Постоянное зеленое свечение */
+            box-shadow: 0 0 20px rgba(166, 194, 97, 0.15);
         }
 
         .timer-unit:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(166, 194, 97, 0.3); /* Усиление свечения при наведении */
+            box-shadow: 0 0 35px rgba(166, 194, 97, 0.3);
         }
 
         .timer-number {
@@ -329,17 +334,17 @@
 
         .bento-card {
             background: var(--card-bg);
-            border: 1px solid var(--accent-purple); /* Постоянный фиолетовый цвет рамки */
+            border: 1px solid var(--accent-purple);
             padding: 2rem;
             border-radius: 20px;
             backdrop-filter: blur(10px);
             transition: var(--transition);
-            box-shadow: 0 0 25px rgba(168, 138, 237, 0.1); /* Постоянное фиолетовое свечение */
+            box-shadow: 0 0 25px rgba(168, 138, 237, 0.1);
         }
 
         .bento-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 40px rgba(168, 138, 237, 0.25); /* Усиление свечения при наведении */
+            box-shadow: 0 0 40px rgba(168, 138, 237, 0.25);
         }
 
         .bento-large { grid-column: span 12; }
@@ -859,7 +864,7 @@
             document.getElementById('minutes').textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         }
         updateTimer();
-        setInterval(updateTimer, 1000); // Обновляем раз в секунду, чтобы минуты менялись вовремя
+        setInterval(updateTimer, 1000); 
 
         // === Анимации ===
         const observer = new IntersectionObserver((entries) => {
