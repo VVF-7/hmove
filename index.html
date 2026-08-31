@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ХМОВЕ 2026 — 3 дня об отношениях, браке и семье</title>
+    <style>
+        /* === Общие стили === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #e74c3c;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* === Навигация === */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #e74c3c;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav ul li a {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        /* === Hero-секция === */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: #fff;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* === Таймер обратного отсчёта === */
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .timer-box {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            min-width: 100px;
+        }
+        
+        .timer-box span {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .timer-box small {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* === Основной контент === */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: #e74c3c;
+        }
+        
+        /* === Расписание === */
+        .schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .day-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .day-card h3 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 0.5rem;
+        }
+        
+        .day-card ul {
+            list-style: none;
+        }
+        
+        .day-card ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .day-card ul li:last-child {
+            border-bottom: none;
+        }
+        
+        /* === Спикеры === */
+        .speakers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .speaker-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .speaker-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 1rem;
+        }
+        
+        .speaker-card h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .speaker-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* === Регистрация === */
+        .registration {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+        
+        .btn {
+            background: #e74c3c;
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+        }
+        
+        /* === Контакты === */
+        .contacts {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .contacts a {
+            color: #e74c3c;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: #c0392b;
+        }
+        
+        /* === Footer === */
+        footer {
+            background: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+        
+        /* === Адаптивность === */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .timer {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- === Шапка и навигация === -->
+    <header>
+        <nav>
+            <div class="logo">ХМОВЕ</div>
+            <ul>
+                <li><a href="#speakers">Спикеры</a></li>
+                <li><a href="#schedule">Расписание</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+                <li><a href="#registration" class="btn">Регистрация</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- === Hero-секция с таймером === -->
+    <section class="hero">
+        <h1>ХМОВЕ 2026</h1>
+        <p>27 — 30 октября 2026 · Краснодар</p>
+        <p>3 дня об отношениях, браке и семье</p>
+        <p>«Не хорошо быть человеку одному» — Бытие 2:18</p>
+        
+        <div class="timer" id="timer">
+            <div class="timer-box">
+                <span id="days">56</span>
+                <small>дней</small>
+            </div>
+            <div class="timer-box">
+                <span id="hours">22</span>
+                <small>часов</small>
+            </div>
+            <div class="timer-box">
+                <span id="minutes">22</span>
+                <small>минут</small>
+            </div>
+            <div class="timer-box">
+                <span id="seconds">26</span>
+                <small>секунд</small>
+            </div>
+        </div>
+        
+        <p>Мы соберёмся, чтобы слышать слово, молиться, общаться и расти вместе. Потому что отношения — это то, ради чего мы созданы.</p>
+        <p>Приходи один, приходи с семьёй, приходи с другом. Здесь каждый найдёт своё место.</p>
+    </section>
+
+    <!-- === Описание мероприятия === -->
+    <section class="container">
+        <h2>О мероприятии</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+            Бог создал нас для общения — с Ним и друг с другом. «Не хорошо быть человеку одному» — это не просто слова, это приглашение к жизни в любви. 
+            Время, когда мы вместе ищем Божий план для наших отношений — между мужем и женой, родителями и детьми, друзьями.
+        </p>
+    </section>
+
+    <!-- === Расписание === -->
+    <section class="container" id="schedule">
+        <h2>Расписание</h2>
+        <div class="schedule">
+            <!-- Понедельник -->
+            <div class="day-card">
+                <h3>Понедельник — 27</h3>
+                <ul>
+                    <li>12:00 — регистрация</li>
+                    <li>13:30 — обед</li>
+                    <li>15:00 — открытие</li>
+                    <li>16:00 — игры</li>
+                    <li>18:30 — ужин</li>
+                    <li>19:30 — вечернее служение</li>
+                    <li>22:00 — свободное время</li>
+                </ul>
+            </div>
+            
+            <!-- Вторник -->
+            <div class="day-card">
+                <h3>Вторник — 28</h3>
+                <ul>
+                    <li>8:00 — молитва</li>
+                    <li>9:00 — завтрак</li>
+                    <li>10:00 — служение</li>
+                    <li>13:30 — обед</li>
+                    <li>14:30 — служение</li>
+                    <li>18:30 — ужин</li>
+                    <li>19:30 — вечернее служение</li>
+                    <li>22:00 — свободное время</li>
+                </ul>
+            </div>
+            
+            <!-- Среда -->
+            <div class="day-card">
+                <h3>Среда — 29</h3>
+                <ul>
+                    <li>8:00 — молитва</li>
+                    <li>9:00 — завтрак</li>
+                    <li>10:00 — служение</li>
+                    <li>13:30 — обед</li>
+                    <li>14:30 — служение</li>
+                    <li>18:30 — ужин</li>
+                    <li>19:30 — вечернее служение (Ручеек)</li>
+                    <li>22:00 — свободное время</li>
+                </ul>
+            </div>
+            
+            <!-- Четверг -->
+            <div class="day-card">
+                <h3>Четверг — 30</h3>
+                <ul>
+                    <li>8:00 — молитва</li>
+                    <li>9:00 — завтрак</li>
+                    <li>10:00 — отъезд</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- === Спикеры === -->
+    <section class="container" id="speakers">
+        <h2>Спикеры</h2>
+        <div class="speakers">
+            <div class="speaker-card">
+                <div class="speaker-avatar">А</div>
+                <h4>Александр</h4>
+                <p>пастор, 25 лет в браке</p>
+                <p>автор курса «Сильный брак»</p>
+            </div>
+            
+            <div class="speaker-card">
+                <div class="speaker-avatar">Е</div>
+                <h4>Елена</h4>
+                <p>психолог, христианский коуч</p>
+                <p>консультант по отношениям</p>
+            </div>
+            
+            <div class="speaker-card">
+                <div class="speaker-avatar">Д</div>
+                <h4>Дмитрий</h4>
+                <p>учитель, проповедник</p>
+                <p>автор «Брак по Божьему плану»</p>
+            </div>
+            
+            <div class="speaker-card">
+                <div class="speaker-avatar">А</div>
+                <h4>Анна</h4>
+                <p>воршип-лидер</p>
+                <p>служит через музыку</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- === Регистрация === -->
+    <section class="container" id="registration">
+        <h2>Регистрация</h2>
+        <div class="registration">
+            <h3>Регистрация участника</h3>
+            <form id="participantForm">
+                <div class="form-group">
+                    <label for="name">Имя *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Возраст *</label>
+                    <input type="number" id="age" name="age" min="18" max="100" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Статус *</label>
+                    <select id="status" name="status" required>
+                        <option value="">Выберите...</option>
+                        <option value="single">Не в браке</option>
+                        <option value="couple">Пара (не женаты)</option>
+                        <option value="married_together">Семейная пара (придём вместе)</option>
+                        <option value="married_one">Семейная пара (один супруг)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="questions">Вопросы</label>
+                    <textarea id="questions" name="questions" rows="4"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+            
+            <hr style="margin: 3rem 0; border: none; border-top: 1px solid #eee;">
+            
+            <h3>Регистрация волонтёра</h3>
+            <form id="volunteerForm">
+                <div class="form-group">
+                    <label for="volunteerName">Имя *</label>
+                    <input type="text" id="volunteerName" name="volunteerName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="volunteerPhone">Телефон *</label>
+                    <input type="tel" id="volunteerPhone" name="volunteerPhone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="volunteerAge">Возраст *</label>
+                    <input type="number" id="volunteerAge" name="volunteerAge" min="18" max="100" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="volunteerHelp">Чем могу помочь?</label>
+                    <textarea id="volunteerHelp" name="volunteerHelp" rows="4"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- === Контакты === -->
+    <section class="contacts" id="contacts">
+        <h2>Контакты</h2>
+        <p>г. Краснодар, пос. Победитель, община «Рука помощи»</p>
+        <p>27–30 октября 2026 · 3 дня об отношениях, браке и семье</p>
+        
+        <div class="social-links">
+            <a href="#" title="Telegram">Tg</a>
+            <a href="#" title="ВКонтакте">Vk</a>
+        </div>
+        
+        <p>Не хорошо быть человеку одному — Бытие 2:18 · Краснодар · 2026</p>
+        <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 2rem;">
+            Местная религиозная организация Церковь христиан веры евангельской «Вифания» г. Сочи
+        </p>
+    </section>
+
+    <!-- === Footer === -->
+    <footer>
+        <p>© 2026 ХМОВЕ. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // === Таймер обратного отсчёта ===
+        function updateTimer() {
+            // Целевая дата: 27 октября 2026 года
+            const targetDate = new Date('2026-10-27T00:00:00');
+            const now = new Date();
+            
+            const diff = targetDate - now;
+            
+            if (diff <= 0) {
+                // Если дата наступила, показываем нули
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+                return;
+            }
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Обновляем таймер каждую секунду
+        updateTimer();
+        setInterval(updateTimer, 1000);
+        
+        // === Обработка форм ===
+        document.getElementById('participantForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за регистрацию! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+        
+        document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за желание быть волонтёром! Мы свяжемся с вами для уточнения деталей.');
+            this.reset();
+        });
+        
+        // === Плавная прокрутка к якорям ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
