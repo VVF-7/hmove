@@ -376,7 +376,7 @@
             font-weight: 600;
         }
 
-        /* === Бегущая строка === */
+        /* === Бегущая строка (ИСПРАВЛЕНА ДЛЯ МОБИЛЬНЫХ) === */
         .marquee-container {
             width: 100%;
             overflow: hidden;
@@ -385,7 +385,8 @@
         }
 
         .marquee-track {
-            display: inline-flex;
+            display: flex; /* Изменено на flex */
+            width: max-content; /* Заставляет блок принимать реальную ширину контента */
             white-space: nowrap;
             animation: marquee 25s linear infinite;
         }
@@ -403,6 +404,7 @@
             align-items: center;
             gap: 3rem;
             padding-right: 3rem;
+            flex-shrink: 0; /* Запрещаем сжиматься, чтобы анимация не прыгала */
         }
 
         .text-outline {
